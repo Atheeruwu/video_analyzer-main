@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Video Analyzer</title>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+        margin: 24px;
+        color: #1b1b1b;
+        background: #f7f7fb;
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      h1 {
+        margin-bottom: 8px;
+      }
+      .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      }
+      .row {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      input[type="file"] {
+        flex: 1;
+      }
+      button {
+        padding: 10px 16px;
+        border: 0;
+        border-radius: 8px;
+        background: #1b5e20;
+        color: #fff;
+        cursor: pointer;
+      }
+      .error {
+        color: #b00020;
+        margin-top: 10px;
+      }
+      pre {
+        white-space: pre-wrap;
+        background: #0f172a;
+        color: #e2e8f0;
+        padding: 12px;
+        border-radius: 10px;
+        overflow: auto;
+      }
+      .muted {
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Video Analyzer</h1>
+      <p class="muted">Upload a short video and get a local summary (Gemini disabled).</p>
+
+      <div class="card">
+        <form method="post" enctype="multipart/form-data">
+          <div class="row">
+            <input type="file" name="video" accept="video/*" required />
+            <button type="submit">Analyze</button>
+          </div>
+        </form>
+
+        {% if error %}
+          <div class="error">{{ error }}</div>
+        {% endif %}
+        {% if error_details %}
+          <h4>Error Details</h4>
+          <pre>{{ error_details }}</pre>
+        {% endif %}
+
+        {% if summary %}
+          <h3>Summary{% if filename %} for {{ filename }}{% endif %}</h3>
+          <pre>{{ summary }}</pre>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

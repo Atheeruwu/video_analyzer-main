@@ -1,0 +1,16 @@
+opencv-python
+numpy
+requests
+Pillow
+python-dotenv
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+google-api-python-client
+tqdm
+nltk
+pytesseract
+google-genai
+flask
+gunicorn
+streamlit
